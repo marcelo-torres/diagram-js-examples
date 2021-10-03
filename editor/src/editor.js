@@ -15,6 +15,8 @@ import SelectionModule from 'diagram-js/lib/features/selection';
 import ZoomScrollModule from 'diagram-js/lib/navigation/zoomscroll';
 
 import ProvidersModule from './providers';
+import LabelModule from './label'
+import PDModelingModule from './modeling';
 
 /**
  * A module that changes the default diagram look.
@@ -64,7 +66,9 @@ export default function Editor(options) {
 
   // our own modules, contributing controls, customizations, and more
   const customModules = [
+    LabelModule,
     ProvidersModule,
+    //PDModelingModule,
     ElementStyleModule
   ];
 
