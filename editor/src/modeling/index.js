@@ -7,7 +7,9 @@ import AttachSupportModule from 'diagram-js/lib/features/attach-support';
 import SelectionModule from 'diagram-js/lib/features/selection';
 import ChangeSupportModule from 'diagram-js/lib/features/change-support';
 import SpaceToolModule from 'diagram-js/lib/features/space-tool';
+import RulesModule from 'diagram-js/lib/features/rules/';
 
+import BaseLayouter from 'diagram-js/lib/layout/BaseLayouter';
 
 export default {
     __init__: [
@@ -15,13 +17,15 @@ export default {
     ],
     __depends__: [
         CommandModule,
-        LabelSupportModule,
-
-        TooltipsModule,
-        AttachSupportModule,
-        SelectionModule,
         ChangeSupportModule,
-        SpaceToolModule
+        SelectionModule,
+        RulesModule,
+
+        //LabelSupportModule,
+        //TooltipsModule,
+        //AttachSupportModule,
+        //SpaceToolModule
     ],
-    modeling: [ 'type', PDModeling ]
+    modeling: [ 'type', PDModeling ],
+    layouter: [ 'type', BaseLayouter ]
 };

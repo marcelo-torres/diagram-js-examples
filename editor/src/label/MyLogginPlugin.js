@@ -7,7 +7,7 @@ import {
 } from './LabelUtil';
  
  // plug-in implemenentation
- export default function MyLoggingPlugin(eventBus, canvas, modeling, textRenderer, directEditing) {
+ export default function LabelEditingProvider(eventBus, canvas, modeling, textRenderer, directEditing) {
 
     this._canvas = canvas;
     this._modeling = modeling;
@@ -15,12 +15,14 @@ import {
 
     directEditing.registerProvider(this);
 
+    /*
     eventBus.on('shape.added', function(event) {
         console.log('shape was added to the diagram: ', event.element);
     });
+    */
 
     eventBus.on('element.dblclick', function(event) {
-        console.log('event.element ', event.element);
+        //console.log('event.element ', event.element);
         activateDirectEdit(event.element, true);
     });
 
@@ -49,7 +51,7 @@ import {
     }
  }
 
- MyLoggingPlugin.$inject = [
+ LabelEditingProvider.$inject = [
     'eventBus',
     'canvas',
     'modeling',
@@ -64,7 +66,7 @@ import {
  *
  * @return {Object} an object with properties bounds (position and size), text and options
  */
- MyLoggingPlugin.prototype.activate = function(element) {
+ LabelEditingProvider.prototype.activate = function(element) {
 
     // text
     var text = getLabel(element);
@@ -82,7 +84,7 @@ import {
 
     assign(context, bounds);
 
-    var options = {};
+    var options = {align: 'center-middle'};
 
     // tasks
     if (false) {
@@ -121,7 +123,7 @@ import {
  * @return {Object} an object containing information about position
  *                  and size (fixed or minimum and/or maximum)
  */
- MyLoggingPlugin.prototype.getEditingBBox = function(element) {
+ LabelEditingProvider.prototype.getEditingBBox = function(element) {
     var canvas = this._canvas;
   
     var target = element.label || element;
@@ -149,8 +151,22 @@ import {
   
     var style = {
       fontFamily: this._textRenderer.getDefaultStyle().fontFamily,
-      fontWeight: this._textRenderer.getDefaultStyle().fontWeight
+      fontWeight: this._textRenderer.getDefaultStyle().fontWeight,
     }
+
+    assign(bounds, {
+      width: bbox.width,
+      height: bbox.height
+    });
+
+    assign(style, {
+      fontSize: defaultFontSize + 'px',
+      lineHeight: defaultLineHeight,
+      paddingTop: (7 * zoom) + 'px',
+      paddingBottom: (7 * zoom) + 'px',
+      paddingLeft: (5 * zoom) + 'px',
+      paddingRight: (5 * zoom) + 'px'
+    });
   
     // internal labels for tasks and collapsed call activities,
     // sub processes and participants
@@ -231,7 +247,7 @@ import {
 };
 
 
-MyLoggingPlugin.prototype.update = function(
+LabelEditingProvider.prototype.update = function(
       element, newLabel,
       activeContextText, bounds) {
   

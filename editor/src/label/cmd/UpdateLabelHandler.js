@@ -41,7 +41,7 @@ export default function UpdateLabelHandler(modeling, textRenderer) {
         if (/*!isLabel(element)
             && isLabelExternal(element)
             && !hasExternalLabel(element)
-            &&*/ !isEmptyText(newLabel)) {
+            &&*/ !isEmptyText(newLabel) && false) {
 
             // create label
             var paddingTop = 7;
@@ -95,7 +95,7 @@ export default function UpdateLabelHandler(modeling, textRenderer) {
 
         // resize element based on label _or_ pre-defined bounds
         if (typeof newBounds === 'undefined') {
-            newBounds = textRenderer.getExternalLabelBounds(label, text);
+            //newBounds = textRenderer.getExternalLabelBounds(label, text);
         }
 
         // setting newBounds to false or _null_ will

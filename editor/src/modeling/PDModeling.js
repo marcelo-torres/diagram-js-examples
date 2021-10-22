@@ -6,6 +6,8 @@ import inherits from 'inherits';
 
 import BaseModeling from 'diagram-js/lib/features/modeling/Modeling';
 
+import UpdateLabelHandler from '../label/cmd/UpdateLabelHandler';
+
 /**
  * PD modeling features activator
  *
@@ -13,7 +15,7 @@ import BaseModeling from 'diagram-js/lib/features/modeling/Modeling';
  * @param {ElementFactory} elementFactory
  * @param {CommandStack} commandStack
  */
- export default function PDModeling(
+ export default function PDModeling(   
     eventBus, elementFactory, commandStack) {
 
   BaseModeling.call(this, eventBus, elementFactory, commandStack);
@@ -33,7 +35,7 @@ PDModeling.prototype.getHandlers = function() {
     
     // TODO 
     // handlers['element.setColor'] = SetColorHandler;
-    // handlers['element.updateLabel'] = UpdateLabelHandler;
+    handlers['element.updateLabel'] = UpdateLabelHandler;
      
     return handlers;
 };
@@ -48,12 +50,12 @@ PDModeling.prototype.updateLabel = function(element, newLabel, newBounds, hints)
 };
 
 PDModeling.prototype.setColor = function(elements, colors) {
-    if (!elements.length) {
+    /*if (!elements.length) {
       elements = [ elements ];
     }
   
     this._commandStack.execute('element.setColor', {
       elements: elements,
       colors: colors
-    });
+    });*/
 };

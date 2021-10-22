@@ -17,7 +17,7 @@ ExamplePaletteProvider.$inject = [
   'create',
   'elementFactory',
   'lassoTool',
-  'palette',
+  'palette'
 ];
 
 
@@ -51,21 +51,6 @@ ExamplePaletteProvider.prototype.getPaletteEntries = function() {
         }
       }
     },*/
-    'create-shape': {
-      group: 'create',
-      className: 'palette-icon-create-shape',
-      title: 'Create Shape',
-      action: {
-        click: function() {
-          var shape = elementFactory.createShape({
-            width: 100,
-            height: 80
-          });
-
-          create.start(event, shape);
-        }
-      }
-    },
     'create-frame': {
       group: 'create',
       className: 'palette-icon-create-frame',
@@ -76,6 +61,25 @@ ExamplePaletteProvider.prototype.getPaletteEntries = function() {
             width: 300,
             height: 200,
             isFrame: true
+          });
+
+          create.start(event, shape);
+        }
+      }
+    },
+    'create-shape': {
+      group: 'create',
+      className: 'palette-icon-create-shape',
+      title: 'Create Shape',
+      action: {
+        click: function() {
+          var shape = elementFactory.createShape({
+            width: 100,
+            height: 80,
+            businessObject: {
+              type: 'service',
+              name: 'sem nome'
+            }
           });
 
           create.start(event, shape);
@@ -93,29 +97,13 @@ ExamplePaletteProvider.prototype.getPaletteEntries = function() {
             height: 80,
             businessObject: {
               type: 'service',
-              name: 'sem nome'
+              name: ''
             }
           });
 
           create.start(event, shape);
         }
       }
-    },
-    'create-label': {
-      group: 'create',
-      className: 'palette-icon-create-shape',
-      title: 'Create Component',
-      action: {
-        click: function() {
-          var shape = elementFactory.createLabel({
-            width: 90,
-            height: 20,
-            text: 2
-          });
-
-          create.start(event, shape);
-        }
-      }
-    },
+    }
   };
 };

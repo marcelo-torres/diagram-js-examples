@@ -25,7 +25,7 @@ function getLabelAttr(semantic) {
   if (is(semantic, 'bpmn:Group')) {
     return 'categoryValueRef';
   }*/
-  return 'text';
+  return '';
 }
 
 function getCategoryValue(semantic) {

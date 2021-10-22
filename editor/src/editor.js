@@ -1,10 +1,11 @@
-import Diagram from 'diagram-js';
+//import Diagram from 'diagram-js';
+import PDDiagram from './PDDiagram';
 
 import ConnectModule from 'diagram-js/lib/features/connect';
 import ContextPadModule from 'diagram-js/lib/features/context-pad';
 import CreateModule from 'diagram-js/lib/features/create';
 import LassoToolModule from 'diagram-js/lib/features/lasso-tool';
-import ModelingModule from 'diagram-js/lib/features/modeling';
+//import ModelingModule from 'diagram-js/lib/features/modeling';
 import MoveCanvasModule from 'diagram-js/lib/navigation/movecanvas';
 import MoveModule from 'diagram-js/lib/features/move';
 import OutlineModule from 'diagram-js/lib/features/outline';
@@ -14,20 +15,26 @@ import RulesModule from 'diagram-js/lib/features/rules';
 import SelectionModule from 'diagram-js/lib/features/selection';
 import ZoomScrollModule from 'diagram-js/lib/navigation/zoomscroll';
 
+
 import ProvidersModule from './providers';
 import LabelModule from './label'
 import PDModelingModule from './modeling';
+//import PDRendererModule from './draw';
+
+
+import CopyPasteModule from 'diagram-js/lib/features/copy-paste';
+import KeyBoardModule from 'diagram-js/lib/navigation/keyboard-move';
 
 /**
  * A module that changes the default diagram look.
  */
 const ElementStyleModule = {
   __init__: [
-    [ 'defaultRenderer', function(defaultRenderer) {
+    [ 'pdrenderer', function(pdrenderer) {
       // override default styles
-      defaultRenderer.CONNECTION_STYLE = { fill: 'none', strokeWidth: 5, stroke: '#000' };
-      defaultRenderer.SHAPE_STYLE = { fill: 'white', stroke: '#000', strokeWidth: 2 };
-      defaultRenderer.FRAME_STYLE = { fill: 'none', stroke: '#000', strokeDasharray: 4, strokeWidth: 2 };
+      pdrenderer.CONNECTION_STYLE = { fill: 'none', strokeWidth: 5, stroke: '#000' };
+      pdrenderer.SHAPE_STYLE = { fill: 'white', stroke: '#000', strokeWidth: 2 };
+      pdrenderer.FRAME_STYLE = { fill: 'none', stroke: '#000', strokeDasharray: 4, strokeWidth: 2 };
     } ]
   ]
 };
@@ -53,7 +60,7 @@ export default function Editor(options) {
     ContextPadModule,
     CreateModule,
     LassoToolModule,
-    ModelingModule,
+    //ModelingModule,
     MoveCanvasModule,
     MoveModule,
     OutlineModule,
@@ -61,18 +68,19 @@ export default function Editor(options) {
     ResizeModule,
     RulesModule,
     SelectionModule,
-    ZoomScrollModule
+    ZoomScrollModule,
   ];
 
   // our own modules, contributing controls, customizations, and more
   const customModules = [
     LabelModule,
     ProvidersModule,
-    //PDModelingModule,
+    CopyPasteModule, KeyBoardModule,
+    PDModelingModule,
     ElementStyleModule
   ];
 
-  return new Diagram({
+  return new PDDiagram({
     canvas: {
       container
     },
