@@ -93,11 +93,11 @@ ExamplePaletteProvider.prototype.getPaletteEntries = function() {
       action: {
         click: function() {
           var shape = elementFactory.createShape({
-            width: 150,
-            height: 80,
+            'width': 150,
+            'height': 80,
             businessObject: {
-              type: 'service',
-              name: ''
+              'type': 'service',
+              'name': ''
             }
           });
 

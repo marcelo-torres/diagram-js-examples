@@ -12,7 +12,9 @@ const diagram = new Editor({
 
 const canvas = diagram.get('canvas');
 const elementFactory = diagram.get('elementFactory');
+const saver = diagram.get('saver');
 
+elementFactory.createRoot();
 // add root
 var root = elementFactory.createRoot();
 
@@ -70,8 +72,15 @@ var shape4 = elementFactory.createShape({
 canvas.addShape(shape4, root);
 
 
+
 // (3) interact with the diagram via API
 
 const selection = diagram.get('selection');
 
 selection.select(shape3);
+
+
+
+
+
+

@@ -114,7 +114,6 @@ PDRenderer.prototype.drawShape = function drawShape(visuals, element) {
   svgAppend(visuals, rect);
 
   if(getLabel(element) != '') {
-    console.log("aqui: ", element);
     renderEmbeddedLabel(visuals, element, 'center-middle');
   }
 

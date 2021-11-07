@@ -20,6 +20,7 @@ import ProvidersModule from './providers';
 import LabelModule from './label'
 import PDModelingModule from './modeling';
 //import PDRendererModule from './draw';
+import SaverModule from './saving';
 
 
 import CopyPasteModule from 'diagram-js/lib/features/copy-paste';
@@ -77,7 +78,8 @@ export default function Editor(options) {
     ProvidersModule,
     CopyPasteModule, KeyBoardModule,
     PDModelingModule,
-    ElementStyleModule
+    ElementStyleModule,
+    SaverModule
   ];
 
   return new PDDiagram({

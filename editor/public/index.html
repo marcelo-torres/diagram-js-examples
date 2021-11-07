@@ -31,7 +31,7 @@
         background: url('data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20fill%3D%22none%22%20stroke%3D%22%23000%22%20stroke-width%3D%221.5%22%20width%3D%2246%22%20height%3D%2246%22%3E%3Cline%20x1%3D%2215%22%20y1%3D%225%22%20x2%3D%225%22%20y2%3D%2215%22%2F%3E%3C%2Fsvg%3E') !important;
       }
 
-      [data-element-id="root_12"] {
+      [data-element-id^="root_"] {
         height: 100% !important;
       }
     </style>
@@ -43,9 +43,13 @@
     <script src="https://cdn.jsdelivr.net/npm/uikit@3.7.3/dist/js/uikit.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/uikit@3.7.3/dist/js/uikit-icons.min.js"></script>
 
+    
+    
+
   </head>
   <body>
-
+    <script src="vendor/editor.js"></script>  
+    
     <div style="background-color: #f5f0f0">
       <div class="uk-grid-divider uk-height-max-small" style="height:40px;" uk-grid>
         <div class="uk-width-auto uk-height-1-1 uk-align-center uk-margin-remove-vertical">
@@ -59,7 +63,8 @@
           </ul>
         </div>
         <div class="uk-width-auto uk-height-1-1 uk-align-center uk-margin-remove-vertical">
-          <button class="uk-button uk-button-primary uk-height-1-1">Save</button>
+          <button class="uk-button uk-button-primary uk-height-1-1" onclick="saver.save(canvas)">Save</button>
+          <button class="uk-button uk-button-primary uk-height-1-1" onclick="saver.load(diagram, canvas, elementFactory)">lOAD</button>
         </div>
       </div>
     </div>
@@ -78,7 +83,6 @@
       <div id="container"></div>
     </div>
 
-    <script src="vendor/editor.js"></script>
     <script src="index.js"></script>
   </body>
 </html>
