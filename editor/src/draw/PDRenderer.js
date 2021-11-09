@@ -165,3 +165,17 @@ PDRenderer.prototype.getConnectionPath = function getConnectionPath(connection) 
 
 
 PDRenderer.$inject = [ 'eventBus', 'styles', 'textRenderer' ];
+
+
+function prependTo(newNode, parentNode, siblingNode) {
+
+  var node = siblingNode || parentNode.firstChild;
+
+  // do not prepend node to itself to prevent IE from crashing
+  // https://github.com/bpmn-io/bpmn-js/issues/746
+  if (newNode === node) {
+    return;
+  }
+
+  parentNode.insertBefore(newNode, node);
+}

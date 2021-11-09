@@ -30,6 +30,8 @@ PDModeling.$inject = [
     'commandStack',
 ];
 
+
+
 PDModeling.prototype.getHandlers = function() {
     var handlers = BaseModeling.prototype.getHandlers.call(this);
     
@@ -58,4 +60,9 @@ PDModeling.prototype.setColor = function(elements, colors) {
       elements: elements,
       colors: colors
     });*/
+};
+  
+PDModeling.prototype.connect = function(source, target, attrs, hints) {
+  var parentIndex = 0; // connections must be rendered behind other elements
+  return this.createConnection(source, target, parentIndex, attrs || {}, source.parent, hints);
 };
