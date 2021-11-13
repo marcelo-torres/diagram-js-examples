@@ -50,34 +50,44 @@
   <body>
     <script src="vendor/editor.js"></script>  
     
-    <div style="background-color: #f5f0f0">
-      <div class="uk-grid-divider uk-height-max-small" style="height:40px;" uk-grid>
-        <div class="uk-width-auto uk-height-1-1 uk-align-center uk-margin-remove-vertical">
-          <img src="logo-com-nome-mais-claro-lateral.png" alt="logo" style="width:120px;height:40px;">
-        </div>
-        <div class="uk-width-expand uk-height-1-1 uk-align-left uk-margin-remove-vertical" style="text-align: center;">
-          <ul class="uk-breadcrumb uk-flex uk-flex-bottom">
-            <li><a href="">Empresa ABC</a></li>
-            <li><a href="">Setor X</a></li>
-            <li><span>Sistema Y</span></li>
-          </ul>
-        </div>
-        <div class="uk-width-auto uk-height-1-1 uk-align-center uk-margin-remove-vertical">
-          <button class="uk-button uk-button-primary uk-height-1-1" onclick="saver.save(canvas)">Save</button>
-          <button class="uk-button uk-button-primary uk-height-1-1" onclick="saver.load(diagram, canvas, elementFactory)">lOAD</button>
-        </div>
-      </div>
-    </div>
+    <!--- 
+      LINK Para ajustar a interface
+      https://getuikit.com/docs/navbar
+    
+    -->
 
-    <!--<div class="uk-flex uk-flex-wrap uk-flex-wrap-around uk-background-muted uk-height-medium" style="background-color: #f5f0f0">
-      <div class="uk-width-1-3">
-        <img src="logo-com-nome-mais-claro-lateral.png" alt="logo" style="width:90px;height:30px;">
+    <nav class="uk-navbar-container " uk-navbar>
+      <div class="uk-navbar-left">
+  
+          <a class="uk-navbar-item uk-logo" href="#">
+            <img src="logo-com-nome-mais-claro-lateral.png" alt="logo" style="width:120px;height:40px;">
+          </a>
+
+          <div class="uk-navbar-item uk-height-1-1">
+            <div class="uk-divider-vertical" style="height: 70%;"></div>
+          </div>
+
+          <div class="uk-navbar-item ">
+            <ul class="uk-breadcrumb "> <!--uk-flex uk-flex-bottom-->
+              <li><a href="">Empresa ABC</a></li>
+              <li><a href="">Setor X</a></li>
+              <li><span>Sistema Y</span></li>
+            </ul>
+          </div>
       </div>
-      <hr class="uk-divider-vertical">
-      <div class="uk-width-2-3">
-        <button class="uk-button uk-button-primary">Save</button>
+
+      <div class="uk-navbar-right">
+          <div class="uk-navbar-item uk-height-1-1">
+            <div class="uk-divider-vertical" style="height: 70%;"></div>
+          </div>
+
+          <div class="uk-navbar-item ">
+            <button class="uk-button uk-button-primary" onclick="saver.save(canvas)">Save</button>
+            <button class="uk-button uk-button-default" onclick="saver.load(diagram, canvas, elementFactory)">lOAD</button>
+          </div>
+        
       </div>
-    </div>-->
+    </nav>
 
     <div>
       <div id="container"></div>
