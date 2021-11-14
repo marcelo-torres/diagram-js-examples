@@ -78,7 +78,25 @@ ExamplePaletteProvider.prototype.getPaletteEntries = function() {
             height: 80,
             businessObject: {
               type: 'service',
-              name: 'sem nome'
+              name: 'sem nome',
+              id: '',
+              properties: [
+                {
+                  writable: false,
+                  name: 'Owner',
+                  value: ''
+                },
+                {
+                  writable: false,
+                  name: 'Float',
+                  value: ''
+                },
+                {
+                  writable: true,
+                  name: 'Flok',
+                  value: ''
+                }
+              ]
             }
           });
 
@@ -93,11 +111,13 @@ ExamplePaletteProvider.prototype.getPaletteEntries = function() {
       action: {
         click: function() {
           var shape = elementFactory.createShape({
-            'width': 150,
-            'height': 80,
+            width: 150,
+            height: 80,
             businessObject: {
-              'type': 'service',
-              'name': ''
+              type: 'service',
+              name: '',
+              id: '',
+              properties: []
             }
           });
 

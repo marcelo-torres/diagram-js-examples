@@ -21,6 +21,11 @@ import {
     });
     */
 
+    var labelEditing = this;
+    eventBus.on('element.label.changed', function(event) {
+      labelEditing.update(event.element, event.newLabel);
+    });
+
     eventBus.on('element.dblclick', function(event) {
         //console.log('event.element ', event.element);
         activateDirectEdit(event.element, true);

@@ -15,11 +15,12 @@ import RulesModule from 'diagram-js/lib/features/rules';
 import SelectionModule from 'diagram-js/lib/features/selection';
 import ZoomScrollModule from 'diagram-js/lib/navigation/zoomscroll';
 
-import ProvidersModule from './providers';
+
 import LabelModule from './label'
 import PDModelingModule from './modeling';
 //import PDRendererModule from './draw';
 import SaverModule from './saving';
+import ProvidersModule from './providers';
 
 
 import CopyPasteModule from 'diagram-js/lib/features/copy-paste';
@@ -74,11 +75,11 @@ export default function Editor(options) {
   // our own modules, contributing controls, customizations, and more
   const customModules = [
     LabelModule,
-    ProvidersModule,
     CopyPasteModule, KeyBoardModule,
     PDModelingModule,
     ElementStyleModule,
-    SaverModule
+    SaverModule,
+    ProvidersModule
   ];
 
   return new PDDiagram({

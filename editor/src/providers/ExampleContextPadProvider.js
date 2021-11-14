@@ -1,9 +1,10 @@
 /**
  * A example context pad provider.
  */
-export default function ExampleContextPadProvider(connect, contextPad, modeling) {
+export default function ExampleContextPadProvider(connect, contextPad, modeling, menuLoader) {
   this._connect = connect;
   this._modeling = modeling;
+  this._menuLoader = menuLoader;
 
   contextPad.registerProvider(this);
 }
@@ -11,13 +12,15 @@ export default function ExampleContextPadProvider(connect, contextPad, modeling)
 ExampleContextPadProvider.$inject = [
   'connect',
   'contextPad',
-  'modeling'
+  'modeling',
+  'menuLoader',
 ];
 
 
 ExampleContextPadProvider.prototype.getContextPadEntries = function(element) {
   var connect = this._connect,
-      modeling = this._modeling;
+      modeling = this._modeling,
+      menuLoader = this._menuLoader;
 
   function removeElement() {
     modeling.removeElements([ element ]);
@@ -25,6 +28,10 @@ ExampleContextPadProvider.prototype.getContextPadEntries = function(element) {
 
   function startConnect(event, element, autoActivate) {
     connect.start(event, element, autoActivate);
+  }
+
+  function openMenu() {
+    menuLoader.openMenu(element);
   }
 
   return {
@@ -44,6 +51,15 @@ ExampleContextPadProvider.prototype.getContextPadEntries = function(element) {
       action: {
         click: startConnect,
         dragstart: startConnect
+      }
+    },
+    'menu': {
+      group: 'edit',
+      className: 'context-pad-icon-menu',
+      title: 'Menu',
+      action: {
+        click: openMenu,
+        dragstart: openMenu
       }
     }
   };
