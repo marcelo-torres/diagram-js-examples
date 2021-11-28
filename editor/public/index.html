@@ -25,6 +25,8 @@
 
     <!--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.1/css/materialize.min.css" />-->
 
+    <script src="./modal-diagram-selection.js"></script>
+
     <style>
       .no-border {
         border-left-width: 0px;
@@ -51,31 +53,50 @@
 
           <div class="uk-navbar-item ">
             <ul class="uk-breadcrumb "> <!--uk-flex uk-flex-bottom-->
-              <li><a href="">Empresa ABC</a></li>
-              <li><a href="">Setor X</a></li>
-              <li><span>Sistema Y</span></li>
+              <!--<li><a href="">Empresa ABC</a></li>-->
+              <!--<li><a href="">Setor X</a></li>-->
+              <li><span id="diagram-breadcrumb-name">Default Diagram</span></li>
             </ul>
           </div>
       </div>
 
       <div class="uk-navbar-right">
-          <div class="uk-navbar-item uk-height-1-1">
-            <div class="uk-divider-vertical" style="height: 70%;"></div>
-          </div>
+        <div class="uk-navbar-item ">
+          <button class="uk-button uk-button-primary" id="new-diagram-buttom">New</button>
+        </div>
 
-          <div class="uk-navbar-item ">
-            <!-- onclick="UIkit.notification({message: 'Success message...', status: 'success'})" -->
-            <button class="uk-button uk-button-primary" onclick="saver.save(canvas)">Save</button>
-            <button class="uk-button uk-button-default" onclick="saver.load(diagram, canvas, elementFactory)">Load</button>
-          </div>
+        <div class="uk-navbar-item uk-height-1-1">
+          <div class="uk-divider-vertical" style="height: 70%;"></div>
+        </div>
+
+        <div class="uk-navbar-item ">
+          <!-- onclick="UIkit.notification({message: 'Success message...', status: 'success'})" -->
+          <!--<button class="uk-button uk-button-primary" onclick="saver.save(canvas)">Save</button>-->
+          
+          <button class="uk-button uk-button-primary" onclick="updateDiagram(saver, canvas)">Save</button>
+          <button class="uk-button uk-button-default" onclick="loadModal()">Load</button>
+        </div>
         
       </div>
     </nav>
 
     
+    <div id="modal-manage-diagrams" uk-modal>
+      <div class="uk-modal-dialog uk-modal-body">
+          <h2 class="uk-modal-title">Select one diagram</h2>
 
-    
+          <div id="modal-manage-diagrams-button-container">
 
+          </div>
+
+          <!--
+          <p class="uk-text-right">
+              <button class="uk-button uk-button-default uk-modal-close" type="button">Cancel</button>
+              <button class="uk-button uk-button-primary" type="button">Save</button>
+          </p>
+          -->
+      </div>
+    </div>
 
     <div id="offcanvas-reveal" uk-offcanvas="flip: true; overlay: true">
       <div class="uk-offcanvas-bar">
@@ -130,6 +151,27 @@
       // https://github.com/uikit/uikit/issues/2513
       jQuery('#menu-accordion').on('hidden', (event) => {
           event.stopPropagation();
+      });
+    </script>
+
+    <script>
+      UIkit.util.on('#new-diagram-buttom', 'click', function (e) {
+        e.preventDefault();
+        e.target.blur();
+        UIkit.modal.prompt('Diagram name:' /*, Math.floor(Math.random() * 8999) + 1000*/ ).then(async function (name) {
+          if(name != undefined && name != '') {
+            var id = await saver.create(name, canvas);
+
+            if(id) {
+              UIkit.notification({message: 'Successfully saved', status: 'success', pos: 'bottom-left'});
+              updateDiagramBreadCrumbName(name, id);
+            } else {
+              UIkit.notification({message: 'Error saving diagram', status: 'danger', pos: 'bottom-left'});
+            } 
+          } else {
+            UIkit.notification({message: 'Invalid diagram name', status: 'danger', pos: 'bottom-left'});
+          }
+        })
       });
     </script>
   </body>

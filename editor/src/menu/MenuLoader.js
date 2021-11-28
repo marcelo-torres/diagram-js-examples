@@ -34,7 +34,7 @@ MenuLoader.prototype.getElement = function(componentProperty) {
 
 MenuLoader.prototype.openMenu = function (element) {
     if(!element.businessObject) return;
-
+    
     this.diagramElementOnContext = element;
     fillMainFields(element, this);
     fillVariableFields(element, this);
@@ -45,14 +45,13 @@ MenuLoader.prototype.openMenu = function (element) {
     function fillMainFields(element, elementGetter) {
         if(!element.businessObject.name || !element.businessObject.id) {
             console.warn('The element does not have name or id attributes');
-            return;
+            //return;
         }
-
         var componentName = elementGetter.getElement('componentName');
-        componentName.value = element.businessObject.name;
+        componentName.value = element.businessObject.name || '';
 
         var componentId = elementGetter.getElement('componentId');
-        componentId.value = element.businessObject.id;
+        componentId.value = element.businessObject.id || '';
     }
 
     function fillVariableFields(element, elementGetter) {
